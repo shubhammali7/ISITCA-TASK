@@ -1,0 +1,94 @@
+<script type="text/ng-template" id="modal.html">
+    <div class="modal" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header" ng-class="{'bg-primary': newUser.mode == 'create', 'bg-warning': newUser.mode == 'edit'}">
+              <h4 class="modal-title text-white">{{newMeeting.mode == 'create' ? 'Create'  : 'Edit' }} Meeting</h4>
+             
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form name="form">
+                    <div class="form-row">
+                        <div class="form-group col-12">
+                            <label>Host Name</label>
+                            <input type="text" class="form-control" name="hostName" id="hostName"
+                                ng-model="newMeeting.hostName" placeholder="Enter customer Name" ng-minlength="1"ng-maxlength="10" required>
+                            <div ng-messages="form.hostName.$error" ng-if="form.hostName.$touched" role="alert">
+                                <div class="text-danger" ng-message="required">Please enter a value for this field.
+                                </div>
+                                <div class="text-danger" ng-message="minlength">First Name At Least 1 Chars Long.</div>
+                                <div class="text-danger" ng-message="maxlength">First Name At Max 10 Chars Long.</div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Participant Name</label>
+                            <input type="text" class="form-control" name=" participantName" id=" participantName"
+                                ng-model="newMeeting.participantName" placeholder="Enter customer Name" ng-minlength="1"ng-maxlength="10" required>
+                            <div ng-messages="form.participantName.$error" ng-if="form.participantName.$touched" role="alert">
+                                <div class="text-danger" ng-message="required">Please enter a value for this field.
+                                </div>
+                                <div class="text-danger" ng-message="minlength">First Name At Least 1 Chars Long.</div>
+                                <div class="text-danger" ng-message="maxlength">First Name At Max 10 Chars Long.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group col-6">
+                            <label>Start Time</label>
+                            <input type="text" class="form-control" name="startTime" id="startTime"
+                                ng-model="newMeeting.startTime" placeholder="Enter customer Name"  required>
+                            <div ng-messages="form.startTime.$error" ng-if="form.startTime.$touched" role="alert">
+                                <div class="text-danger" ng-message="required">Please enter a value for this field.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>End Time</label>
+                            <input type="text" class="form-control" name="endTime" id="endTime"
+                                ng-model="newMeeting.endTime" placeholder="Enter customer Name"  required>
+                            <div ng-messages="form.endTime.$error" ng-if="form.endTime.$touched" role="alert">
+                                <div class="text-danger" ng-message="required">Please enter a value for this field.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Status</label>
+                            <select class="form-control" name="status" id="status" ng-model="newMeeting.status" required>
+                              <option>scheduled</option>
+                              <option>completed</option>
+                              <option>cancelled by host</option>
+                              <option>cancelled by participant</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-6">
+                            <label>Created By</label>
+                            <select class="form-control" name="createdBy" id="createdBy" ng-model="newMeeting.createdBy" required>
+                              <option>host</option>
+                              <option>participant</option>
+                              <option>Owner</option>
+                            </select>
+                        </div>
+                        
+    
+                    </form>
+            </div>
+            
+      
+            <!-- Modal footer start -->
+            <div class="modal-footer">
+                <button class="btn btn-success pt-2" ng-click="addMeeting()" ng-if="newMeeting.mode != 'edit'"
+                ng-disabled="!form.$valid"><i class='fa fa-save'></i> Add</button>
+            <button class="btn btn-success pt-3" ng-click="editMeeting()" ng-if="newMeeting.mode == 'edit'"
+                ng-disabled="!form.$valid"><i class='fa fa-save'></i> Save</button>
+              <button type="button" class="btn btn-danger" ng-click="close()">Close</button>
+            </div>
+            <!-- Model Footer Ends -->
+
+
+        </div>
+        </div>
+      </div>
+</script>
